@@ -5,184 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plex Integrator – Expert Plex & Smart Media Consulting</title>
   <meta name="description" content="Plex Integrator is a Service-Disabled Veteran-Owned consulting practice specializing in Plex server setup, media networks, home theater integration, and smart automation. Based in San Diego, serving clients remotely and on-site." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Plex Integrator – Expert Plex & Smart Media Consulting">
+  <meta property="og:description" content="SDVOB consultant for Plex servers, NAS, home theater, networking, and smart automation. Remote & on-site in Southern California.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/og-image.jpg">
+  <meta property="og:url" content="https://plexintegrator.com/">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Calendly assets (popup + inline embed) -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
   <style>
-    :root {
-      --bg: #0f0f10;         /* deep near-black */
-      --panel: #161617;      /* card background */
-      --text: #f5f6f7;       /* primary text */
-      --muted: #b7bcc2;      /* secondary text */
-      --brand: #e5a00d;      /* Plex-like orange */
-      --brand-2: #ffbb33;    /* accent */
-      --stroke: #262628;     /* subtle borders */
-      --success: #2ecc71;
-      --danger: #ff5757;
-
-      /* toast */
-      --ok-bg:#1a3a1a; --ok-fg:#b9f6ca;
-      --err-bg:#3a1a1a; --err-fg:#ffb3b3;
+    :root{
+      --bg:#0f0f10; --panel:#161617; --text:#f5f6f7; --muted:#b7bcc2;
+      --brand:#e5a00d; --brand-2:#ffbb33; --stroke:#262628;
+      --ok-bg:#1a3a1a; --ok-fg:#b9f6ca; --err-bg:#3a1a1a; --err-fg:#ffb3b3;
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(1200px 800px at 70% -10%, rgba(229,160,13,0.12), transparent 60%), var(--bg);
-      color: var(--text);
+    *{box-sizing:border-box;}
+    html,body{height:100%;margin:0;font-family:'Inter',sans-serif;background:radial-gradient(1200px 800px at 70% -10%,rgba(229,160,13,.12),transparent 60%),var(--bg);color:var(--text);}
+    a{color:inherit;text-decoration:none;}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px;}
+
+    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--stroke);}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px;}
+    .logo-badge{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#f3c552);display:grid;place-items:center;color:#111;font-weight:800;}
+
+    .cta-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:var(--brand);color:#111;font-weight:700;border:1px solid #00000025;box-shadow:0 10px 20px rgba(229,160,13,.15);cursor:pointer;}
+    .cta-btn:hover{background:var(--brand-2);transform:translateY(-1px);transition:.15s ease;}
+    .btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font-weight:600;cursor:pointer;}
+    .btn-secondary:hover{border-color:var(--brand);}
+
+    .hero{padding:96px 0 72px;text-align:center;}
+    .hero h1{font-size:clamp(32px,4.2vw,56px);margin:0 0 12px;line-height:1.05;}
+    .hero p{color:var(--muted);font-size:clamp(16px,1.6vw,20px);margin:0 auto 26px;max-width:820px;}
+    .badge-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:18px 0 0;}
+    .badge{border:1px solid var(--stroke);background:var(--panel);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600;}
+    .sdvob{border-color:#2e7d32;color:#b9f6ca;background:linear-gradient(180deg,#1a2a1a,#121a12);}
+
+    .section{padding:64px 0;}
+    .contact{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;}
+    .contact .left,.contact .right{grid-column:span 12;}
+    @media(min-width:900px){.contact .left{grid-column:span 6;}.contact .right{grid-column:span 6;}}
+    input,textarea{width:100%;padding:14px;border-radius:12px;border:1px solid var(--stroke);background:#0f0f10;color:#f5f6f7;}
+    textarea{min-height:140px;resize:vertical;}
+    footer{border-top:1px solid var(--stroke);margin-top:56px;}
+    .foot{padding:28px 0;display:flex;gap:14px;justify-content:space-between;align-items:center;flex-wrap:wrap;color:var(--muted);}
+    .tiny{font-size:12px;color:var(--muted);}
+
+    /* Mobile sticky action bar */
+    .sticky-actions{
+      position:fixed;left:8px;right:8px;bottom:8px;z-index:80;
+      display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;
+      background:color-mix(in srgb,var(--bg) 65%, transparent);
+      padding:8px;border:1px solid var(--stroke);border-radius:16px;backdrop-filter:blur(8px);
     }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--stroke); }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.2px; }
-    .logo-badge { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), #f3c552); display: grid; place-items: center; color: #111; font-weight: 800; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: var(--brand); color: #111; font-weight: 700; border: 1px solid #00000025; box-shadow: 0 10px 20px rgba(229,160,13,.15); cursor: pointer; }
-    .cta-btn:hover { background: var(--brand-2); transform: translateY(-1px); transition: .15s ease; }
+    .sticky-actions a{
+      display:inline-flex;justify-content:center;align-items:center;gap:8px;
+      padding:12px 10px;border-radius:12px;font-weight:800;border:1px solid #00000025;
+      background:var(--brand);color:#111;box-shadow:0 10px 20px rgba(229,160,13,.25);
+    }
+    .sticky-actions a svg{width:18px;height:18px;}
+    @media(min-width:720px){.sticky-actions{display:none;}}
 
-    .hero { padding: 96px 0 72px; text-align: center; }
-    .hero h1 { font-size: clamp(32px, 4.2vw, 56px); margin: 0 0 12px; line-height: 1.05; }
-    .hero p { color: var(--muted); font-size: clamp(16px, 1.6vw, 20px); margin: 0 auto 26px; max-width: 820px; }
-    .badge-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 18px 0 0; }
-    .badge { border: 1px solid var(--stroke); background: var(--panel); padding: 8px 12px; border-radius: 999px; color: var(--muted); font-weight: 600; }
-    .sdvob { border-color: #2e7d32; color: #b9f6ca; background: linear-gradient(180deg, #1a2a1a, #121a12); }
-
-    .section { padding: 64px 0; }
-    .cards { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .card { grid-column: span 12; padding: 22px; border: 1px solid var(--stroke); background: var(--panel); border-radius: 16px; }
-    @media (min-width: 720px) { .card { grid-column: span 6; } }
-    @media (min-width: 1024px) { .card { grid-column: span 4; } }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); }
-
-    .process { display: grid; gap: 14px; grid-template-columns: repeat(12, 1fr); }
-    .step { grid-column: span 12; padding: 18px; border: 1px dashed var(--stroke); border-radius: 14px; background: #121214; }
-    @media (min-width: 900px) { .step { grid-column: span 4; } }
-    .step .n { width: 28px; height: 28px; border-radius: 7px; background: var(--brand); color: #111; display: grid; place-items: center; font-weight: 800; margin-bottom: 8px; }
-
-    .contact { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .contact .left { grid-column: span 12; }
-    .contact .right { grid-column: span 12; }
-    @media (min-width: 900px) { .contact .left { grid-column: span 6; } .contact .right { grid-column: span 6; } }
-    form { display: grid; gap: 12px; }
-    label { font-size: 12px; color: var(--muted); }
-    input, textarea { width: 100%; padding: 14px 14px; border-radius: 12px; border: 1px solid var(--stroke); background: #0f0f10; color: var(--text); }
-    input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--brand) 60%, white); outline-offset: 2px; }
-    textarea { min-height: 140px; resize: vertical; }
-    .btn-secondary { display:inline-flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--stroke); background: var(--panel); color: var(--text); font-weight: 600; }
-    .btn-secondary:hover { border-color: var(--brand); }
-
-    footer { border-top: 1px solid var(--stroke); margin-top: 56px; }
-    .foot { padding: 28px 0; display: flex; gap: 14px; justify-content: space-between; align-items: center; flex-wrap: wrap; color: var(--muted); }
-    .tiny { font-size: 12px; color: var(--muted); }
-
-    /* toast */
+    /* Toasts */
     .toast{position:fixed;bottom:24px;right:24px;padding:14px 18px;border-radius:12px;font-weight:600;font-size:14px;display:flex;align-items:center;gap:10px;box-shadow:0 0 18px rgba(0,255,100,.2);opacity:0;transform:translateY(12px);transition:transform .4s ease,opacity .4s ease,box-shadow .4s ease;z-index:100;max-width:min(92vw,420px);}
     .toast.show{opacity:1;transform:translateY(0);}
     .toast svg{flex-shrink:0;}
     .toast.success{background:var(--ok-bg);color:var(--ok-fg);border:1px solid #2e7d32;}
     .toast.error{background:var(--err-bg);color:var(--err-fg);border:1px solid #7a2d2d;box-shadow:0 0 18px rgba(255,100,100,.25);}
     @media(max-width:600px){.toast{left:16px;right:16px;}}
+
+    /* FAQs */
+    .faqs{max-width:880px;margin:0 auto;}
+    .faqs details{border:1px solid var(--stroke);background:var(--panel);border-radius:14px;margin-bottom:12px;padding:14px 16px;}
+    .faqs summary{cursor:pointer;font-weight:700;}
+    .faqs p{color:var(--muted);margin:10px 0 0;}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="logo" aria-label="Plex Integrator">
-        <div class="logo-badge">PI</div>
-        <div>Plex Integrator</div>
-      </div>
-      <nav>
+      <div class="logo"><div class="logo-badge">PI</div><div>Plex Integrator</div></div>
+      <nav style="display:flex;gap:16px;align-items:center;">
+        <a href="tel:+18889299744" class="tiny" style="color:var(--brand);font-weight:600;">(888) 929-9744</a>
         <a class="btn-secondary" href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero container" id="top">
       <h1>Expert Plex & Smart Media Consulting</h1>
-      <p>Design, optimize, and streamline your media experience — from Plex servers and NAS storage to home theater, networking, and smart automation. Remote or on-site consulting available in Southern California.</p>
-      <div>
+      <p>Design, optimize, and streamline your media experience—from Plex servers and NAS storage to home theater, networking, and smart automation. Remote or on-site consulting available in Southern California.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
         <a class="cta-btn" href="#contact">Book a Consultation</a>
+        <!-- Popup Calendly trigger -->
+        <a class="btn-secondary" href="#" onclick="return openCalendlyPopup();" aria-label="Pick a time">Pick a time</a>
+        <a class="btn-secondary" href="tel:+18889299744" aria-label="Call (888) 929-9744">(888) 929-9744</a>
       </div>
       <div class="badge-row" style="margin-top:20px">
-        <span class="badge sdvob" title="Service-Disabled Veteran-Owned Business">SDVOB • Service-Disabled Veteran-Owned Business</span>
+        <span class="badge sdvob">SDVOB • Service-Disabled Veteran-Owned Business</span>
         <span class="badge">CAGE Code: <strong>13AB4</strong></span>
         <span class="badge">UEI: <strong>HYF3DVP3MV25</strong></span>
-        <span class="badge">Based in San Diego, CA</span>
+        <span class="badge">Call: <strong>(888) 929-9744</strong></span>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="section container" id="services">
-      <h2 style="margin:0 0 18px; font-size:26px">Services</h2>
-      <div class="cards">
-        <article class="card"><h3>Plex Server Setup & Optimization</h3><p>Clean installs, hardware sizing, codecs/transcoding, remote access, users, libraries, and performance tuning.</p></article>
-        <article class="card"><h3>NAS & Storage Architecture</h3><p>Unraid/TrueNAS/Synology design, redundancy, cache pools, drive health, and expansion planning.</p></article>
-        <article class="card"><h3>Network Design</h3><p>Wired/wireless planning, VLANs, PoE, multi-gig, mesh, and QoS so streams stay smooth everywhere.</p></article>
-        <article class="card"><h3>Client & Theater Integration</h3><p>Apple TV, Shield, HTPC, projectors, AVR, eARC, HDR, and calibration basics for a cinematic result.</p></article>
-        <article class="card"><h3>Automation & Smart Home</h3><p>Home Assistant integrations, scene control, lighting and presence, notifications, and dashboards.</p></article>
-        <article class="card"><h3>Remote Support & Care Plans</h3><p>Monitoring, updates, backups, and quick troubleshooting with secure remote access.</p></article>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section container" id="process">
-      <h2 style="margin:0 0 18px; font-size:26px">Simple, Proven Process</h2>
-      <div class="process">
-        <div class="step"><div class="n">1</div><strong>Discovery Call (15–30 min)</strong><br/><span class="tiny">Goals, budget, environment. We identify quick wins and required gear.</span></div>
-        <div class="step"><div class="n">2</div><strong>Design & Proposal</strong><br/><span class="tiny">You receive a clear plan: topology, hardware list, timeline, and flat-rate consulting fee.</span></div>
-        <div class="step"><div class="n">3</div><strong>Implement & Optimize</strong><br/><span class="tiny">We execute remotely or on-site, document everything, and leave you with a maintainable setup.</span></div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
     <section class="section container" id="contact">
-      <h2 style="margin:0 0 18px; font-size:26px">Get in Touch</h2>
+      <h2 style="margin:0 0 18px;font-size:26px">Get in Touch</h2>
       <div class="contact">
         <div class="left">
-          <p class="tiny">Prefer email? Reach out directly at <a href="mailto:vincent@vincentactual.com">vincent@vincentactual.com</a>. Include a brief description of your current setup and goals.</p>
-          <div style="margin-top:16px; border:1px solid var(--stroke); border-radius:14px; padding:16px; background:var(--panel)">
+          <p class="tiny">
+            Prefer email? Reach out at
+            <a href="mailto:vincent@vincentactual.com">vincent@vincentactual.com</a>,
+            call <a href="tel:+18889299744">(888) 929-9744</a>,
+            text <a href="sms:+18889299744">(888) 929-9744</a>,
+            or WhatsApp <a href="https://wa.me/18889299744?text=Hi%20Vincent%2C%20I%27d%20like%20help%20with%20my%20Plex%20setup.">chat now</a>.
+          </p>
+          <div style="margin-top:16px;border:1px solid var(--stroke);border-radius:14px;padding:16px;background:var(--panel)">
             <strong>Service Area</strong>
             <p class="tiny" style="margin-top:8px">Remote worldwide • On-site: San Diego & Southern California</p>
             <strong>Business</strong>
             <p class="tiny" style="margin-top:8px">Plex Integrator is a consulting service of Vincent Actual LLC. SDVOB • CAGE 13AB4 • UEI HYF3DVP3MV25.</p>
           </div>
+          <div style="margin-top:16px;">
+            <!-- Popup Calendly trigger -->
+            <a class="cta-btn" href="#" onclick="return openCalendlyPopup();">Schedule a Free 15-min Consult</a>
+          </div>
         </div>
+
         <div class="right">
-          <!-- Formspree: async submission with toast feedback -->
           <form id="contact-form" action="https://formspree.io/f/xblzpdbn" method="POST" novalidate>
-            <!-- Spam honeypot -->
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true" />
-
-            <label for="name">Your name</label>
-            <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
-
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="Email" required autocomplete="email" />
-
-            <label for="phone">Phone (optional)</label>
-            <input id="phone" name="phone" placeholder="Phone (optional)" autocomplete="tel" />
-
-            <label for="message">Project details</label>
-            <textarea id="message" name="message" placeholder="Tell me about your project" required></textarea>
-
-            <!-- Optional metadata -->
-            <input type="hidden" name="form_name" value="Plex Integrator – Contact" />
-            <input type="hidden" name="_subject" value="New Plex Integrator Inquiry" />
-
-            <div style="display:flex; gap:10px; align-items:center;">
+            <input required name="name" placeholder="Your name" autocomplete="name">
+            <input required type="email" name="email" placeholder="Email" autocomplete="email">
+            <input name="phone" placeholder="Phone (optional)" autocomplete="tel">
+            <textarea name="message" placeholder="Tell me about your project" required></textarea>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
               <button class="cta-btn" type="submit">Send Message</button>
+              <span class="tiny">Free 15-minute consult • No spam</span>
               <a class="btn-secondary" href="#top">Back to top</a>
             </div>
-            <p class="tiny">By submitting, you agree to be contacted about your project. No spam, ever.</p>
-
-            <noscript>
-              <p class="tiny">JavaScript is disabled — the form will submit with a standard page reload.</p>
-            </noscript>
+            <input type="hidden" name="_subject" value="New Plex Integrator Inquiry">
           </form>
         </div>
+      </div>
+    </section>
+
+    <!-- Inline Calendly embed -->
+    <section class="section container" id="book">
+      <h2 style="margin:0 0 18px;font-size:26px;text-align:center">Book a time</h2>
+      <div class="cal-wrap" style="max-width:880px;margin:0 auto;border:1px solid var(--stroke);background:var(--panel);border-radius:16px;">
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/vincentactual/15min?hide_landing_page_details=1&hide_gdpr_banner=1&utm_source=site&utm_medium=inline&utm_campaign=booking"
+             style="min-width:320px;height:700px;border-radius:16px;overflow:hidden"></div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="section container">
+      <h2 style="margin:0 0 18px;font-size:26px;text-align:center">FAQs</h2>
+      <div class="faqs">
+        <details>
+          <summary>Do you work remotely or only on-site?</summary>
+          <p>Both. Most Plex/NAS/networking optimization is done remotely. On-site is available across San Diego and Southern California.</p>
+        </details>
+        <details>
+          <summary>What gear do you recommend?</summary>
+          <p>It depends on your goals and budget. I’ll size CPU/GPU, transcoding needs, storage layout (Unraid/TrueNAS/Synology), and your network (VLANs, APs, multi-gig) during the discovery call.</p>
+        </details>
+        <details>
+          <summary>How much does it cost?</summary>
+          <p>Simple optimization starts with a flat diagnostic. Larger projects are fixed-fee with a clear parts list and timeline—no surprises.</p>
+        </details>
+        <details>
+          <summary>Can you integrate with Home Assistant / smart home?</summary>
+          <p>Yes—presence, scenes, notifications, and dashboards tightly integrated with Plex and your theater stack.</p>
+        </details>
       </div>
     </section>
   </main>
@@ -190,60 +196,120 @@
   <footer>
     <div class="container foot">
       <div>© <span id="y"></span> Plex Integrator • All rights reserved</div>
-      <div class="tiny">A service of Vincent Actual LLC • SDVOB • C-7 Low Voltage (in progress)</div>
+      <div class="tiny">A service of Vincent Actual LLC • SDVOB • Call (888) 929-9744</div>
     </div>
   </footer>
 
+  <!-- Mobile sticky action bar: Call | Text | WhatsApp -->
+  <div class="sticky-actions" role="navigation" aria-label="Quick contact actions">
+    <a href="tel:+18889299744" aria-label="Call (888) 929-9744">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.654 1.328a.678.678 0 0 1 1.015-.063l2.29 2.29c.329.329.445.812.292 1.243l-.805 2.268a.678.678 0 0 0 .17.7l2.7 2.7a.678.678 0 0 0 .7.17l2.268-.805c.431-.153.914-.037 1.243.292l2.29 2.29a.678.678 0 0 1-.063 1.015l-1.2.96c-.69.552-1.65.66-2.43.272-1.34-.66-3.23-1.81-5.27-3.85-2.04-2.04-3.19-3.93-3.85-5.27-.388-.78-.28-1.74.272-2.43l.96-1.2z"/></svg>
+      Call
+    </a>
+    <a href="sms:+18889299744" aria-label="Text (888) 929-9744">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5.414L2.707 14.707A1 1 0 0 1 1 13.999V12H2a2 2 0 0 1-2-2V4z"/></svg>
+      Text
+    </a>
+    <a href="https://wa.me/18889299744?text=Hi%20Vincent%2C%20I%27d%20like%20help%20with%20my%20Plex%20setup." aria-label="WhatsApp chat">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.6 2.4A7.5 7.5 0 0 0 1.3 12.7L0 16l3.4-1.2A7.5 7.5 0 0 0 13.6 2.4zm-2.2 9.3c-.3.2-1 .4-1.4.4-.4 0-.8 0-1.3-.2-1.5-.5-2.8-1.7-3.3-3.2-.1-.4-.2-.9-.2-1.3 0-.5.2-1.1.4-1.3.2-.2.4-.3.6-.3h.4c.1 0 .3.2.3.4l.4 1.1c.1.2 0 .3 0 .4l-.3.4c-.1.1-.1.3 0 .5.2.5.7 1.2 1.2 1.6.4.3.7.4.9.3l.5-.3c.1 0 .3 0 .4.1l.9.4c.2.1.3.2.3.4 0 .2 0 .3-.1 .4z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+  <!-- JSON-LD: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Plex Integrator",
+    "telephone": "+1-888-929-9744",
+    "email": "vincent@vincentactual.com",
+    "url": "https://plexintegrator.com/",
+    "image": "https://plexintegrator.com/og-image.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "San Diego", "addressRegion": "CA", "addressCountry": "US" },
+    "areaServed": ["San Diego County","Orange County","Remote"],
+    "description": "Service-Disabled Veteran-Owned consulting for Plex server setup, NAS storage, home theater optimization, networking, and smart home automation."
+  }
+  </script>
+
   <script>
-    // Year
+    // === CONFIG: Set your Calendly link once here ===
+    // Example: "https://calendly.com/vincentactual/30-minute-meeting"
+    const CAL_LINK = "https://calendly.com/vincentactual/15min";
+
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Toasts
-    const toast = document.getElementById('toast');
-    function showToast(message, type = 'success', duration = 5000){
-      toast.innerHTML = (type === 'error'
-        ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>'
-        : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM7.97 11.03a.75.75 0 0 0 1.06 0l3.992-3.992a.75.75 0 1 0-1.06-1.06L8 9.94 6.04 7.98a.75.75 0 1 0-1.06 1.06l2.99 2.99z"/></svg>')
-        + ' ' + message;
-
-      toast.className = 'toast ' + (type === 'error' ? 'error' : 'success') + ' show';
+    const toast=document.getElementById('toast');
+    function showToast(message,type='success',duration=3000){
+      toast.innerHTML=(type==='error'
+        ?'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>'
+        :'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM7.97 11.03a.75.75 0 0 0 1.06 0l3.992-3.992a.75.75 0 1 0-1.06-1.06L8 9.94 6.04 7.98a.75.75 0 1 0-1.06 1.06l2.99 2.99z"/></svg>')
+        +' '+message;
+      toast.className='toast '+(type==='error'?'error':'success')+' show';
       clearTimeout(showToast._t);
-      showToast._t = setTimeout(() => toast.classList.remove('show'), duration);
+      showToast._t=setTimeout(()=>toast.classList.remove('show'),duration);
     }
 
-    // Formspree async submit with graceful fallback
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', async (e) => {
-      // If JS disabled, this won't run — normal POST will occur.
-      e.preventDefault();
-
-      const data = new FormData(form);
-      // simple client-side validation
-      if(!data.get('name') || !data.get('email') || !data.get('message')){
-        showToast('Please complete required fields.', 'error');
-        return;
-      }
-
+    // Calendly popup (prefill from form if available)
+    function openCalendlyPopup(){
       try{
-        const res = await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if(res.ok){
-          form.reset();
-          showToast('Message sent successfully! I’ll get back to you soon.', 'success');
-        }else{
-          // Try to parse error for more detail
-          let msg = 'Something went wrong. Please try again.';
-          try { const j = await res.json(); if(j && j.errors && j.errors[0]) msg = j.errors[0].message; } catch {}
-          showToast(msg, 'error');
-        }
-      } catch(err){
-        showToast('Network error. Please try again.', 'error');
+        const form=document.getElementById('contact-form');
+        const name=form?.elements?.name?.value?.trim()||'';
+        const email=form?.elements?.email?.value?.trim()||'';
+        const url=new URL(CAL_LINK);
+        url.searchParams.set('utm_source','site');
+        url.searchParams.set('utm_medium','cta');
+        url.searchParams.set('utm_campaign','booking');
+        if(name) url.searchParams.set('name',name);
+        if(email) url.searchParams.set('email',email);
+        Calendly.initPopupWidget({url:url.toString()});
+        return false;
+      }catch(e){
+        window.open(CAL_LINK,'_blank','noopener'); return false;
       }
+    }
+
+    // Keep inline embed in sync with CAL_LINK
+    (function syncInlineCalendly(){
+      const el=document.querySelector('.calendly-inline-widget');
+      if(el){
+        const u=new URL(CAL_LINK);
+        u.searchParams.set('hide_landing_page_details','1');
+        u.searchParams.set('hide_gdpr_banner','1');
+        u.searchParams.set('utm_source','site');
+        u.searchParams.set('utm_medium','inline');
+        u.searchParams.set('utm_campaign','booking');
+        el.setAttribute('data-url',u.toString());
+      }
+    })();
+
+    // Async form submit + redirect to /thanks.html
+    document.getElementById('contact-form').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const form=e.target;
+      const data=new FormData(form);
+      if(!data.get('name')||!data.get('email')||!data.get('message')){showToast('Please complete required fields.','error');return;}
+      try{
+        const res=await fetch(form.action,{method:form.method,body:data,headers:{'Accept':'application/json'}});
+        if(res.ok){
+          window.location.href='/thanks.html';
+        }else{
+          let msg='Something went wrong. Please try again.';
+          try{const j=await res.json(); if(j?.errors?.length){msg=j.errors.map(e=>e.message).join(' ');} }catch{}
+          showToast(msg,'error');
+        }
+      }catch{showToast('Network error. Please try again.','error');}
+    });
+
+    // Smooth scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      });
     });
   </script>
 </body>
