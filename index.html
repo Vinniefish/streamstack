@@ -26,7 +26,7 @@
     .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.2px; }
     .logo-badge { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), #f3c552); display: grid; place-items: center; color: #111; font-weight: 800; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: var(--brand); color: #111; font-weight: 700; border: 1px solid #00000025; box-shadow: 0 10px 20px rgba(229,160,13,.15); }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: var(--brand); color: #111; font-weight: 700; border: 1px solid #00000025; box-shadow: 0 10px 20px rgba(229,160,13,.15); cursor: pointer; }
     .cta-btn:hover { background: var(--brand-2); transform: translateY(-1px); transition: .15s ease; }
     .hero { padding: 96px 0 72px; text-align: center; }
     .hero h1 { font-size: clamp(32px, 4.2vw, 56px); margin: 0 0 12px; line-height: 1.05; }
@@ -51,11 +51,21 @@
     @media (min-width: 900px) { .contact .left { grid-column: span 6; } .contact .right { grid-column: span 6; } }
     input, textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--stroke); background: #0f0f10; color: var(--text); }
     textarea { min-height: 140px; resize: vertical; }
-    .btn-secondary { display:inline-flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--stroke); background: var(--panel); color: var(--text); font-weight: 600; }
+    .btn-secondary { display:inline-flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--stroke); background: var(--panel); color: var(--text); font-weight: 600; cursor: pointer; }
     .btn-secondary:hover { border-color: var(--brand); }
     footer { border-top: 1px solid var(--stroke); margin-top: 56px; }
     .foot { padding: 28px 0; display: flex; gap: 14px; justify-content: space-between; align-items: center; flex-wrap: wrap; color: var(--muted); }
     .tiny { font-size: 12px; color: var(--muted); }
+    #form-status { 
+      display: none; 
+      margin-top: 10px; 
+      padding: 10px 14px; 
+      border-radius: 10px; 
+      font-size: 14px; 
+      font-weight: 600; 
+      text-align: center; 
+      transition: opacity 0.3s ease; 
+    }
   </style>
 </head>
 <body>
@@ -124,8 +134,8 @@
               <button class="cta-btn" type="submit">Send Message</button>
               <a class="btn-secondary" href="#top">Back to top</a>
             </div>
-            <p class="tiny" style="margin-top:8px;">Your message will be delivered directly to Vincent Actual. No spam, ever.</p>
           </form>
+          <div id="form-status"></div>
         </div>
       </div>
     </section>
@@ -142,20 +152,33 @@
     document.getElementById('y').textContent = new Date().getFullYear();
 
     const form = document.querySelector("form");
+    const status = document.getElementById("form-status");
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const data = new FormData(form);
+      status.style.display = "none";
+
       const response = await fetch(form.action, {
         method: form.method,
         body: data,
         headers: { 'Accept': 'application/json' }
       });
+
       if (response.ok) {
-        alert("✅ Thanks for reaching out! Your message has been sent successfully.");
         form.reset();
+        status.textContent = "✅ Message sent successfully! I’ll get back to you shortly.";
+        status.style.background = "#1a3a1a";
+        status.style.color = "#b9f6ca";
+        status.style.display = "block";
       } else {
-        alert("❌ Something went wrong. Please try again or email vincent@vincentactual.com directly.");
+        status.textContent = "❌ Something went wrong. Please try again.";
+        status.style.background = "#3a1a1a";
+        status.style.color = "#ffaaaa";
+        status.style.display = "block";
       }
+
+      setTimeout(() => { status.style.display = "none"; }, 6000);
     });
   </script>
 </body>
