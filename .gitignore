@@ -1,0 +1,8 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+# Node tooling (if you add any later)
+node_modules/
+dist/
+build/
