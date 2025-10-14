@@ -105,7 +105,7 @@
     <section class="hero container" id="top">
       <h1>Expert Plex & Smart Media Consulting</h1>
       <p>Design, optimize, and streamline your media experience—from Plex servers and NAS storage to home theater, networking, and smart automation. Remote or on-site consulting available in Southern California.</p>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
         <a class="cta-btn" href="#contact">Book a Consultation</a>
         <!-- Popup Calendly trigger -->
         <a class="btn-secondary" href="#" onclick="return openCalendlyPopup();" aria-label="Pick a time">Pick a time</a>
@@ -138,7 +138,7 @@
           </div>
           <div style="margin-top:16px;">
             <!-- Popup Calendly trigger -->
-            <a class="cta-btn" href="#" onclick="return openCalendlyPopup();">Schedule a Free 15-min Consult</a>
+            <a class="cta-btn" href="#" onclick="return openCalendlyPopup();">Schedule a 30-minute consult</a>
           </div>
         </div>
 
@@ -150,7 +150,7 @@
             <textarea name="message" placeholder="Tell me about your project" required></textarea>
             <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
               <button class="cta-btn" type="submit">Send Message</button>
-              <span class="tiny">Free 15-minute consult • No spam</span>
+              <span class="tiny">Free 30-minute consult • No spam</span>
               <a class="btn-secondary" href="#top">Back to top</a>
             </div>
             <input type="hidden" name="_subject" value="New Plex Integrator Inquiry">
@@ -163,9 +163,7 @@
     <section class="section container" id="book">
       <h2 style="margin:0 0 18px;font-size:26px;text-align:center">Book a time</h2>
       <div class="cal-wrap" style="max-width:880px;margin:0 auto;border:1px solid var(--stroke);background:var(--panel);border-radius:16px;">
-        <div class="calendly-inline-widget"
-             data-url="https://calendly.com/vincentactual/15min?hide_landing_page_details=1&hide_gdpr_banner=1&utm_source=site&utm_medium=inline&utm_campaign=booking"
-             style="min-width:320px;height:700px;border-radius:16px;overflow:hidden"></div>
+        <div class="calendly-inline-widget" data-url="" style="min-width:320px;height:700px;border-radius:16px;overflow:hidden"></div>
       </div>
     </section>
 
@@ -211,7 +209,7 @@
       Text
     </a>
     <a href="https://wa.me/18889299744?text=Hi%20Vincent%2C%20I%27d%20like%20help%20with%20my%20Plex%20setup." aria-label="WhatsApp chat">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.6 2.4A7.5 7.5 0 0 0 1.3 12.7L0 16l3.4-1.2A7.5 7.5 0 0 0 13.6 2.4zm-2.2 9.3c-.3.2-1 .4-1.4.4-.4 0-.8 0-1.3-.2-1.5-.5-2.8-1.7-3.3-3.2-.1-.4-.2-.9-.2-1.3 0-.5.2-1.1.4-1.3.2-.2.4-.3.6-.3h.4c.1 0 .3.2.3.4l.4 1.1c.1.2 0 .3 0 .4l-.3.4c-.1.1-.1.3 0 .5.2.5.7 1.2 1.2 1.6.4.3.7.4.9.3l.5-.3c.1 0 .3 0 .4.1l.9.4c.2.1.3.2.3.4 0 .2 0 .3-.1 .4z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.6 2.4A7.5 7.5 0 0 0 1.3 12.7L0 16l3.4-1.2A7.5 7.5 0 0 0 13.6 2.4zm-2.2 9.3c-.3.2-1 .4-1.4.4-.4 0-.8 0-1.3-.2-1.5-.5-2.8-1.7-3.3-3.2-.1-.4-.2-.9-.2-1.3 0-.5.2-1.1.4-1.3.2-.2.4-.3.6-.3h.4c.1 0 .3.2 .3.4l.4 1.1c.1.2 0 .3 0 .4l-.3 .4c-.1 .1-.1 .3 0 .5 .2 .5 .7 1.2 1.2 1.6 .4 .3 .7 .4 .9 .3l.5 -.3c.1 0 .3 0 .4 .1l.9 .4c.2 .1 .3 .2 .3 .4 0 .2 0 .3 -.1 .4z"/></svg>
       WhatsApp
     </a>
   </div>
@@ -235,13 +233,12 @@
   </script>
 
   <script>
-    // === CONFIG: Set your Calendly link once here ===
-    // Example: "https://calendly.com/vincentactual/30-minute-meeting"
-    const CAL_LINK = "https://calendly.com/vincentactual/15min";
+    // === CONFIG: single source of truth for Calendly ===
+    const CAL_LINK = "https://calendly.com/vincentprestia/30-minute-meeting";
 
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    const toast=document.getElementById('toast');
+    const toast = document.getElementById('toast');
     function showToast(message,type='success',duration=3000){
       toast.innerHTML=(type==='error'
         ?'<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>'
@@ -271,13 +268,14 @@
       }
     }
 
-    // Keep inline embed in sync with CAL_LINK
+    // Keep inline embed in sync with CAL_LINK (show event header/details)
     (function syncInlineCalendly(){
       const el=document.querySelector('.calendly-inline-widget');
       if(el){
         const u=new URL(CAL_LINK);
-        u.searchParams.set('hide_landing_page_details','1');
+        // Keep GDPR banner hidden if desired:
         u.searchParams.set('hide_gdpr_banner','1');
+        // Tracking params:
         u.searchParams.set('utm_source','site');
         u.searchParams.set('utm_medium','inline');
         u.searchParams.set('utm_campaign','booking');
